@@ -356,11 +356,13 @@ a:hover {
 
 .catalog-grid {
   display: grid;
-  gap: 30px 26px;
+  gap: 34px 28px;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   list-style: none;
   margin: 0;
   padding: 0;
+  /* Profundidade para a leve inclinação 3D dos gabinetes. */
+  perspective: 1400px;
 }
 
 /* ==========================================================================
@@ -393,30 +395,43 @@ a:hover {
     border-color var(--speed);
 }
 
-/* Laterais do gabinete, com a cor do jogo. */
+/* Laterais do gabinete: faixa da cor do jogo + volume da madeira. */
 .cabinet::before,
 .cabinet::after {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 9px;
-  background: linear-gradient(180deg, var(--accent), transparent 78%);
-  opacity: 0.55;
+  width: 14px;
   pointer-events: none;
+  z-index: 1;
 }
 
-.cabinet::before { left: 0; }
-.cabinet::after  { right: 0; }
+.cabinet::before {
+  left: 0;
+  background:
+    linear-gradient(180deg, var(--accent), transparent 78%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
+  opacity: 0.7;
+}
 
+.cabinet::after {
+  right: 0;
+  background:
+    linear-gradient(180deg, var(--accent), transparent 78%),
+    linear-gradient(270deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.55));
+  opacity: 0.7;
+}
+
+/* Inclinação 3D: o gabinete "vira" levemente na direção do visitante. */
 .cabinet:hover,
 .cabinet:focus-within {
-  transform: translateY(-6px);
+  transform: translateY(-8px) rotateX(3deg) rotateY(-4deg) scale(1.015);
   border-color: rgba(241, 190, 29, 0.5);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 20px 44px rgba(0, 0, 0, 0.6),
-    0 0 30px rgba(241, 190, 29, 0.14);
+    22px 30px 54px rgba(0, 0, 0, 0.68),
+    0 0 34px rgba(241, 190, 29, 0.16);
 }
 
 /* ------------------------------------------------------------- marquise -- */
@@ -431,6 +446,15 @@ a:hover {
   box-shadow:
     0 0 22px rgba(241, 190, 29, 0.35),
     inset 0 -3px 0 rgba(0, 0, 0, 0.25);
+  /* Respiro de neon na marquise. */
+  animation: pa-marquee 5.5s ease-in-out infinite;
+}
+
+@keyframes pa-marquee {
+  0%, 100% { box-shadow: 0 0 18px rgba(241, 190, 29, 0.28),
+                         inset 0 -3px 0 rgba(0, 0, 0, 0.25); }
+  50%      { box-shadow: 0 0 30px rgba(241, 190, 29, 0.55),
+                         inset 0 -3px 0 rgba(0, 0, 0, 0.25); }
 }
 
 .cab-marquee-title {
@@ -465,36 +489,99 @@ a:hover {
 .cab-screen-inner {
   position: relative;
   aspect-ratio: 4 / 3;
-  border-radius: 6px;
+  /* Cantos levemente arredondados = curvatura do tubo. */
+  border-radius: 14px / 10px;
   overflow: hidden;
   background: #000;
+  /* Vinheta interna: escurece as bordas como um CRT real. */
+  box-shadow:
+    inset 0 0 34px 8px rgba(0, 0, 0, 0.85),
+    inset 0 0 90px 10px rgba(0, 0, 0, 0.5);
 }
 
 .cab-screen-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 300ms ease, filter 300ms ease;
+  /* Modo atração: deriva lenta e contínua, como um demo em loop. */
+  animation: pa-attract 26s ease-in-out infinite alternate;
+  transition: filter 300ms ease;
 }
 
 .cabinet:hover .cab-screen-inner img,
 .cabinet:focus-within .cab-screen-inner img {
-  transform: scale(1.05);
-  filter: saturate(1.2) brightness(1.12);
+  filter: saturate(1.25) brightness(1.15);
 }
 
-/* Linhas de varredura + brilho do vidro sobre a tela. */
+@keyframes pa-attract {
+  0%   { transform: scale(1.06) translate3d(0, 0, 0); }
+  50%  { transform: scale(1.13) translate3d(-2%, -1.4%, 0); }
+  100% { transform: scale(1.06) translate3d(1.5%, 1%, 0); }
+}
+
+/* Faixa de brilho que varre a tela de cima a baixo (rolagem do CRT). */
+.cab-screen-inner::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 34%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.055) 45%,
+    rgba(255, 255, 255, 0.11) 55%,
+    rgba(255, 255, 255, 0) 100%);
+  animation: pa-sweep 7s linear infinite;
+}
+
+@keyframes pa-sweep {
+  0%   { transform: translateY(-120%); }
+  100% { transform: translateY(320%); }
+}
+
+/* Linhas de varredura + brilho do vidro, com cintilação sutil. */
 .cab-screen-inner::after {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 3;
   pointer-events: none;
   background:
     linear-gradient(115deg, rgba(255, 255, 255, 0.14) 0%,
                     rgba(255, 255, 255, 0) 42%),
     repeating-linear-gradient(180deg,
-                    rgba(0, 0, 0, 0.32) 0 1px,
+                    rgba(0, 0, 0, 0.34) 0 1px,
                     rgba(0, 0, 0, 0) 1px 3px);
+  animation: pa-flicker 2.6s steps(2, end) infinite;
+}
+
+@keyframes pa-flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97%           { opacity: 0.82; }
+  98%           { opacity: 1; }
+  99%           { opacity: 0.9; }
+}
+
+/* LED de energia do gabinete. */
+.cab-screen::before {
+  content: "";
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 4;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px 2px rgba(52, 211, 153, 0.85);
+  animation: pa-led 3.4s ease-in-out infinite;
+}
+
+@keyframes pa-led {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
 }
 
 /* Brilho colorido escapando da tela. */
@@ -771,15 +858,30 @@ kbd {
     scroll-behavior: auto !important;
   }
 
-  .game-card:hover,
-  .game-card:focus-within,
   .btn:hover,
   .social-link:hover {
     transform: none;
   }
 
-  .game-card:hover .game-card-media img {
+  /* Gabinete estático: sem deriva, sem varredura, sem cintilação. */
+  .cabinet:hover,
+  .cabinet:focus-within {
     transform: none;
+  }
+
+  .cab-screen-inner img {
+    animation: none;
+    transform: scale(1.06);
+  }
+
+  .cab-screen-inner::before {
+    display: none;
+  }
+
+  .cab-screen-inner::after,
+  .cab-screen::before,
+  .cab-marquee {
+    animation: none;
   }
 }
 
