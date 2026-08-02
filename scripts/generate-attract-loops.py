@@ -232,6 +232,11 @@ GAMES = [
     ("top-gear-2", (124, 58, 237), "speed"),
 ]
 
+# Jogos cuja tela ja e' gerada como cena em pixel art por
+# scripts/generate-pixel-scenes.py. Sao pulados aqui para que os dois
+# geradores nao disputem o mesmo arquivo de saida.
+PIXEL_SCENE_SLUGS = {"top-gear-2"}
+
 SCAN = scanlines()
 VIGN = vignette()
 
@@ -265,6 +270,9 @@ if __name__ == "__main__":
     print("Gerando loops de atracao (arte original, sem material de terceiros):")
     total = 0
     for slug, accent, motif in GAMES:
+        if slug in PIXEL_SCENE_SLUGS:
+            print(f"  pula   {slug} (cena em pixel art)")
+            continue
         total += os.path.getsize(build(slug, accent, motif))
     print(f"total: {total/1024:.0f} KB")
     print("OK")
