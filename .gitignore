@@ -1,0 +1,34 @@
+# ---------------------------------------------------------------- segredos
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+credentials.json
+secrets.json
+token.txt
+github-token.txt
+passwords.txt
+
+# ------------------------------------------------------------------ sistema
+.DS_Store
+Thumbs.db
+
+# ------------------------------------------------------------ build / cache
+node_modules/
+.cache/
+coverage/
+dist-temp/
+*.log
+
+# --------------------------------------------------------------- temporários
+*.tmp
+*.bak
+*.orig
+*~
+
+# ATENÇÃO: a pasta roms/ NÃO é ignorada de propósito.
+# As ROMs fazem parte do projeto publicado, conforme definido pelo proprietário.

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Política restrita: esta página não carrega emulador, ROM nem WebAssembly. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'none'; connect-src 'self'; worker-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
+
+<title>PowerArcades Games — clássicos de Super Nintendo no navegador</title>
+<meta name="description" content="Portal PowerArcades Games: catálogo de clássicos de Super Nintendo executados no navegador por emulação, sem anúncios e sem rastreadores.">
+<meta name="author" content="PowerArcades">
+<meta name="theme-color" content="#080B12">
+<link rel="canonical" href="https://brotherofjhonny.github.io/powerarcades-games/">
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/favicon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PowerArcades Games">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="PowerArcades Games — clássicos de Super Nintendo no navegador">
+<meta property="og:description" content="Catálogo de clássicos de Super Nintendo executados no navegador por emulação, sem anúncios e sem rastreadores.">
+<meta property="og:url" content="https://brotherofjhonny.github.io/powerarcades-games/">
+<meta property="og:image" content="https://brotherofjhonny.github.io/powerarcades-games/assets/images/social-share.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logotipo PowerArcades Games">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PowerArcades Games">
+<meta name="twitter:description" content="Clássicos que marcaram gerações, direto no navegador.">
+<meta name="twitter:image" content="https://brotherofjhonny.github.io/powerarcades-games/assets/images/social-share.webp">
+
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="./" aria-label="PowerArcades Games — página inicial">
+      <img src="assets/images/logo-powerarcades.webp" alt="" width="720" height="200" aria-hidden="true">
+      <span class="brand-text">
+        <span class="brand-name">PowerArcades Games</span>
+        <span class="brand-handle">@powerarcades</span>
+      </span>
+    </a>
+
+    <nav class="header-nav" aria-label="Navegação principal">
+      <a class="nav-link" href="#catalogo">Catálogo</a>
+      <a class="nav-link" href="#como-jogar">Como jogar</a>
+
+      <span class="social-row">
+        <a class="social-link" href="https://www.youtube.com/@powerarcades" target="_blank" rel="noopener noreferrer external" aria-label="YouTube @powerarcades (abre em nova aba)">
+          <img src="assets/icons/youtube.svg" alt="" width="24" height="24" aria-hidden="true">
+        </a>
+        <a class="social-link" href="https://www.instagram.com/powerarcades" target="_blank" rel="noopener noreferrer external" aria-label="Instagram @powerarcades (abre em nova aba)">
+          <img src="assets/icons/instagram.svg" alt="" width="24" height="24" aria-hidden="true">
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@powerarcades" target="_blank" rel="noopener noreferrer external" aria-label="TikTok @powerarcades (abre em nova aba)">
+          <img src="assets/icons/tiktok.svg" alt="" width="24" height="24" aria-hidden="true">
+        </a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <h1>Clássicos que marcaram gerações,<br><span class="accent">direto no navegador.</span></h1>
+      <p>Escolha um jogo, conecte seu controle e aperte Start.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#catalogo">Ver catálogo</a>
+        <a class="btn btn-ghost" href="#como-jogar">Como jogar</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="catalogo" aria-labelledby="catalogo-titulo">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="catalogo-titulo">Catálogo</h2>
+        <p id="catalog-count">Carregando catálogo…</p>
+      </div>
+
+      <ul class="catalog-grid" id="catalog">
+        <!-- Cards inseridos por assets/js/ui.js a partir de assets/js/catalog.js -->
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="como-jogar" aria-labelledby="como-jogar-titulo">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="como-jogar-titulo">Como jogar</h2>
+        <p>Tudo roda no seu navegador, no seu dispositivo.</p>
+      </div>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <h3>Teclado</h3>
+          <ul>
+            <li>Direcional: <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></li>
+            <li>A / B: <kbd>X</kbd> e <kbd>Z</kbd></li>
+            <li>X / Y: <kbd>S</kbd> e <kbd>A</kbd></li>
+            <li>L / R: <kbd>Q</kbd> e <kbd>W</kbd></li>
+            <li>Start: <kbd>Enter</kbd> — Select: <kbd>Shift</kbd></li>
+          </ul>
+        </article>
+
+        <article class="info-card">
+          <h3>Controle</h3>
+          <p>
+            Conecte um controle compatível com a Gamepad API do navegador,
+            pressione qualquer botão para que ele seja reconhecido e ajuste
+            o mapeamento pelo menu de controles do emulador.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <h3>Tela cheia</h3>
+          <p>
+            Use o botão “Tela cheia” na página do jogo ou o controle
+            correspondente na barra do emulador. Pressione <kbd>Esc</kbd>
+            para voltar.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <h3>Privacidade</h3>
+          <p>
+            Sem anúncios, sem rastreadores e sem scripts de terceiros.
+            O emulador é servido pelo próprio site e nada é enviado
+            para fora do seu navegador.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>PowerArcades</h3>
+        <ul class="footer-links">
+          <li><span class="brand-handle">@powerarcades</span></li>
+          <li><a href="./">Página inicial</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Redes sociais</h3>
+        <ul class="footer-links">
+          <li><a href="https://www.youtube.com/@powerarcades" target="_blank" rel="noopener noreferrer external">YouTube</a></li>
+          <li><a href="https://www.instagram.com/powerarcades" target="_blank" rel="noopener noreferrer external">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@powerarcades" target="_blank" rel="noopener noreferrer external">TikTok</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Projeto</h3>
+        <ul class="footer-links">
+          <li><a href="https://github.com/BrotherOfJhonny/powerarcades-games" target="_blank" rel="noopener noreferrer external">Código-fonte</a></li>
+          <li><a href="https://brotherofjhonny.github.io/" target="_blank" rel="noopener noreferrer external">Site principal</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      Este projeto utiliza tecnologia de emulação executada no navegador.
+      Jogos, marcas e personagens pertencem aos respectivos proprietários.
+      Emulação por <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener noreferrer external">EmulatorJS</a> (GPL-3.0), hospedado localmente.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/catalog.js"></script>
+<script src="assets/js/ui.js"></script>
+</body>
+</html>

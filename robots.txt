@@ -1,0 +1,13 @@
+# PowerArcades Games
+# https://brotherofjhonny.github.io/powerarcades-games/
+
+User-agent: *
+Allow: /powerarcades-games/$
+Allow: /powerarcades-games/games/
+
+# Arquivos de dados do emulador e ROMs não devem ser indexados.
+Disallow: /powerarcades-games/data/
+Disallow: /powerarcades-games/roms/
+Disallow: /powerarcades-games/scripts/
+
+Sitemap: https://brotherofjhonny.github.io/powerarcades-games/sitemap.xml

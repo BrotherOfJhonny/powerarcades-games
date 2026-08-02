@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- EmulatorJS local: WebAssembly + scripts de Blob URL. Sem 'unsafe-eval'. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' blob: 'wasm-unsafe-eval' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' blob: data:; connect-src 'self' blob:; worker-src 'self' blob:; child-src 'self' blob:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
+
+<title>Teenage Mutant Ninja Turtles IV: Turtles in Time — PowerArcades Games</title>
+<meta name="description" content="Jogue Teenage Mutant Ninja Turtles IV: Turtles in Time, clássico beat &#x27;em up do Super Nintendo, direto no navegador pelo PowerArcades Games.">
+<meta name="author" content="PowerArcades">
+<meta name="theme-color" content="#080B12">
+<link rel="canonical" href="https://brotherofjhonny.github.io/powerarcades-games/games/tmnt-4-turtles-in-time/">
+
+<link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/images/favicon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PowerArcades Games">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Teenage Mutant Ninja Turtles IV: Turtles in Time — PowerArcades Games">
+<meta property="og:description" content="Jogue Teenage Mutant Ninja Turtles IV: Turtles in Time, clássico beat &#x27;em up do Super Nintendo, direto no navegador pelo PowerArcades Games.">
+<meta property="og:url" content="https://brotherofjhonny.github.io/powerarcades-games/games/tmnt-4-turtles-in-time/">
+<meta property="og:image" content="https://brotherofjhonny.github.io/powerarcades-games/assets/images/games/tmnt-4-turtles-in-time.webp">
+<meta property="og:image:width" content="640">
+<meta property="og:image:height" content="480">
+<meta property="og:image:alt" content="Arte de capa de Teenage Mutant Ninja Turtles IV: Turtles in Time">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Teenage Mutant Ninja Turtles IV: Turtles in Time — PowerArcades Games">
+<meta name="twitter:description" content="Jogue Teenage Mutant Ninja Turtles IV: Turtles in Time, clássico beat &#x27;em up do Super Nintendo, direto no navegador pelo PowerArcades Games.">
+<meta name="twitter:image" content="https://brotherofjhonny.github.io/powerarcades-games/assets/images/games/tmnt-4-turtles-in-time.webp">
+
+<meta name="game:platform" content="Super Nintendo">
+<meta name="game:genre" content="Beat &#x27;em up">
+<meta name="game:players" content="1–2 jogadores">
+<meta name="game:year" content="1992">
+
+<link rel="stylesheet" href="../../assets/css/main.css">
+<link rel="stylesheet" href="../../assets/css/game.css">
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../../" aria-label="PowerArcades Games — página inicial">
+      <img src="../../assets/images/logo-powerarcades.webp" alt="" width="720" height="200" aria-hidden="true">
+      <span class="brand-text">
+        <span class="brand-name">PowerArcades Games</span>
+        <span class="brand-handle">@powerarcades</span>
+      </span>
+    </a>
+
+    <nav class="header-nav" aria-label="Navegação principal">
+      <a class="nav-link" href="../../#catalogo">Catálogo</a>
+      <span class="social-row">
+        <a class="social-link" href="https://www.youtube.com/@powerarcades" target="_blank" rel="noopener noreferrer external" aria-label="YouTube @powerarcades (abre em nova aba)">
+          <img src="../../assets/icons/youtube.svg" alt="" width="24" height="24" aria-hidden="true">
+        </a>
+        <a class="social-link" href="https://www.instagram.com/powerarcades" target="_blank" rel="noopener noreferrer external" aria-label="Instagram @powerarcades (abre em nova aba)">
+          <img src="../../assets/icons/instagram.svg" alt="" width="24" height="24" aria-hidden="true">
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@powerarcades" target="_blank" rel="noopener noreferrer external" aria-label="TikTok @powerarcades (abre em nova aba)">
+          <img src="../../assets/icons/tiktok.svg" alt="" width="24" height="24" aria-hidden="true">
+        </a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap game-page">
+
+  <nav class="breadcrumb" aria-label="Trilha de navegação">
+    <ol>
+      <li><a href="../../">Início</a></li>
+      <li><a href="../../#catalogo">Catálogo</a></li>
+      <li aria-current="page">TMNT IV: Turtles in Time</li>
+    </ol>
+  </nav>
+
+  <div class="game-head">
+    <div>
+      <h1>Teenage Mutant Ninja Turtles IV: Turtles in Time</h1>
+      <ul class="game-meta">
+        <li class="tag tag-platform">Super Nintendo</li>
+        <li class="tag">Beat &#x27;em up</li>
+        <li class="tag">1–2 jogadores</li>
+        <li class="tag">1992</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Caminho da ROM FIXO no HTML. Nunca vem de parâmetro de URL. -->
+  <div class="stage"
+       id="stage"
+       data-core="snes"
+       data-title="Teenage Mutant Ninja Turtles IV: Turtles in Time"
+       data-rom="../../roms/tmnt-4-turtles-in-time.sfc">
+
+    <div id="game"></div>
+
+    <div class="stage-overlay" id="stage-overlay">
+      <div class="stage-overlay-inner" id="stage-overlay-inner">
+        <h2>TMNT IV: Turtles in Time</h2>
+        <p>
+          O emulador, o núcleo de Super Nintendo e a ROM só começam a ser
+          carregados depois que você clicar no botão abaixo.
+        </p>
+        <button type="button" class="btn btn-primary" id="start-button">
+          Iniciar jogo
+        </button>
+        <p class="stage-note">
+          Cerca de 1&nbsp;MB de núcleo do emulador + a ROM deste jogo.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="game-toolbar">
+    <button type="button" class="btn btn-ghost" id="fullscreen-button">
+      Tela cheia
+    </button>
+    <a class="btn btn-ghost" href="../../#catalogo">Voltar ao catálogo</a>
+  </div>
+
+  <div class="game-columns">
+
+    <article class="info-card">
+      <h3>Sobre o jogo</h3>
+      <p>Beat &#x27;em up cooperativo em que as tartarugas atravessam o tempo, referência absoluta do gênero no Super Nintendo.</p>
+    </article>
+
+    <article class="info-card">
+      <h3>Controles do teclado</h3>
+      <table class="controls-table">
+        <caption>Mapeamento padrão. Pode ser alterado no menu do emulador.</caption>
+        <tbody>
+          <tr><th scope="row">Direcional</th><td><kbd>Setas ↑ ↓ ← →</kbd></td></tr>
+          <tr><th scope="row">Botão A</th><td><kbd>X</kbd></td></tr>
+          <tr><th scope="row">Botão B</th><td><kbd>Z</kbd></td></tr>
+          <tr><th scope="row">Botão X</th><td><kbd>S</kbd></td></tr>
+          <tr><th scope="row">Botão Y</th><td><kbd>A</kbd></td></tr>
+          <tr><th scope="row">Botão L</th><td><kbd>Q</kbd></td></tr>
+          <tr><th scope="row">Botão R</th><td><kbd>W</kbd></td></tr>
+          <tr><th scope="row">Start</th><td><kbd>Enter</kbd></td></tr>
+          <tr><th scope="row">Select</th><td><kbd>Shift</kbd></td></tr>
+        </tbody>
+      </table>
+    </article>
+
+    <article class="info-card">
+      <h3>Instruções</h3>
+      <ul>
+        <li>Clique em <strong>Iniciar jogo</strong> e aguarde o download do núcleo.</li>
+        <li>Quando o emulador terminar de carregar, use o botão de play dele para começar.</li>
+        <li>Conecte um controle e pressione qualquer botão para que o navegador o reconheça.</li>
+        <li>Use <strong>Tela cheia</strong> e pressione <kbd>Esc</kbd> para sair.</li>
+        <li>Se o áudio não tocar, clique uma vez sobre a tela do jogo.</li>
+      </ul>
+    </article>
+
+    <article class="info-card">
+      <h3>Detalhes técnicos</h3>
+      <ul>
+        <li>Núcleo: <strong>snes9x</strong> (WebAssembly)</li>
+        <li>Arquivo: <code id="rom-path">roms/tmnt-4-turtles-in-time.sfc</code></li>
+        <li>Emulador servido pelo próprio site, sem CDN.</li>
+        <li>Nenhuma requisição sai deste domínio.</li>
+      </ul>
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>PowerArcades</h3>
+        <ul class="footer-links">
+          <li><span class="brand-handle">@powerarcades</span></li>
+          <li><a href="../../">Página inicial</a></li>
+          <li><a href="../../#catalogo">Catálogo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Redes sociais</h3>
+        <ul class="footer-links">
+          <li><a href="https://www.youtube.com/@powerarcades" target="_blank" rel="noopener noreferrer external">YouTube</a></li>
+          <li><a href="https://www.instagram.com/powerarcades" target="_blank" rel="noopener noreferrer external">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@powerarcades" target="_blank" rel="noopener noreferrer external">TikTok</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Projeto</h3>
+        <ul class="footer-links">
+          <li><a href="https://github.com/BrotherOfJhonny/powerarcades-games" target="_blank" rel="noopener noreferrer external">Código-fonte</a></li>
+          <li><a href="https://brotherofjhonny.github.io/" target="_blank" rel="noopener noreferrer external">Site principal</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      Este projeto utiliza tecnologia de emulação executada no navegador.
+      Jogos, marcas e personagens pertencem aos respectivos proprietários.
+      Emulação por <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener noreferrer external">EmulatorJS</a> (GPL-3.0), hospedado localmente.
+    </p>
+  </div>
+</footer>
+
+<script src="../../assets/js/game-loader.js"></script>
+</body>
+</html>

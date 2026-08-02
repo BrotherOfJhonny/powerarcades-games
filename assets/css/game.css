@@ -1,0 +1,237 @@
+/* ==========================================================================
+   PowerArcades Games — estilos da página de jogo
+   Complementa main.css. Nenhum recurso externo.
+   ========================================================================== */
+
+.game-page {
+  padding-block: clamp(22px, 4vw, 38px);
+}
+
+.breadcrumb {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  color: var(--grey);
+}
+
+.breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb li + li::before {
+  content: "/";
+  margin-right: 8px;
+  color: var(--border);
+}
+
+.game-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.game-head h1 {
+  margin: 0 0 10px;
+  font-size: clamp(1.4rem, 3.4vw, 2.15rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* --------------------------------------------------------------- palco ---- */
+
+.stage {
+  position: relative;
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  aspect-ratio: 4 / 3;
+  width: 100%;
+}
+
+/* O EmulatorJS injeta o player dentro deste elemento. */
+#game {
+  width: 100%;
+  height: 100%;
+}
+
+#game:empty {
+  display: none;
+}
+
+/* Painel exibido antes de iniciar — nada é baixado até o clique. */
+.stage-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  background:
+    radial-gradient(700px 300px at 50% 12%, rgba(0, 174, 239, 0.16), transparent 68%),
+    radial-gradient(520px 260px at 82% 88%, rgba(124, 58, 237, 0.18), transparent 66%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg));
+}
+
+.stage-overlay[hidden] {
+  display: none;
+}
+
+.stage-overlay-inner {
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.stage-overlay h2 {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  font-weight: 800;
+}
+
+.stage-overlay p {
+  margin: 0;
+  color: var(--grey);
+  font-size: 0.94rem;
+}
+
+.stage-note {
+  font-size: 0.82rem !important;
+  color: var(--grey);
+  opacity: 0.85;
+}
+
+/* Estado de carregamento */
+.stage-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--neon);
+  font-weight: 600;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 174, 239, 0.25);
+  border-top-color: var(--neon);
+  animation: pa-spin 800ms linear infinite;
+  flex: none;
+}
+
+@keyframes pa-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Erro */
+.stage-error {
+  border: 1px solid rgba(255, 107, 0, 0.55);
+  background: rgba(255, 107, 0, 0.1);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: var(--white);
+  font-size: 0.9rem;
+  text-align: left;
+  max-width: 520px;
+}
+
+.stage-error strong {
+  display: block;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+
+.stage-error p {
+  margin: 0 0 8px;
+}
+
+.stage-error p:last-child {
+  margin-bottom: 0;
+}
+
+.stage-error code {
+  font-family: ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  color: var(--grey);
+  overflow-wrap: anywhere;
+}
+
+/* -------------------------------------------------------------- controles */
+
+.game-toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* ---------------------------------------------------------------- colunas */
+
+.game-columns {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 30px;
+}
+
+/* Tabela de controles */
+.controls-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.controls-table caption {
+  text-align: left;
+  color: var(--grey);
+  font-size: 0.86rem;
+  padding-bottom: 8px;
+}
+
+.controls-table th,
+.controls-table td {
+  text-align: left;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.controls-table th {
+  color: var(--white);
+  font-weight: 600;
+  width: 45%;
+}
+
+.controls-table td {
+  color: var(--grey);
+}
+
+.controls-table tr:last-child th,
+.controls-table tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2s;
+  }
+}
+
+@media (max-width: 720px) {
+  .game-toolbar .btn {
+    flex: 1 1 100%;
+  }
+}
