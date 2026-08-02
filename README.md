@@ -209,8 +209,19 @@ proprietários.
 Este projeto utiliza tecnologia de emulação executada no navegador. Jogos,
 marcas e personagens pertencem aos respectivos proprietários.
 
-A identidade visual (logotipo, favicon, imagem de compartilhamento e as quatro
-capas) é **original e gerada proceduralmente** por
-`scripts/generate-artwork.py` — motivos geométricos abstratos por gênero, sem
-nenhuma arte, box art, sprite ou captura de tela de terceiros. As páginas dos
-jogos são geradas por `scripts/generate-game-pages.py`.
+**Logotipo:** o logo PowerArcades é da marca, fornecido pelo proprietário
+(`assets/images/_logo-origem.png`). O `scripts/prepare-logo.py` recorta o fundo
+cinza por saturação + morfologia e deriva a versão transparente, o favicon e a
+imagem de compartilhamento. Cor da marca: `#F1BE1D`.
+
+**Capas dos jogos:** arte **original gerada proceduralmente** por
+`scripts/generate-artwork.py` — motivos geométricos abstratos por gênero. Não
+há box art, sprite ou captura de tela de terceiros no repositório, e nada disso
+foi baixado de sites de ROM.
+
+**Gabinetes de fliperama:** o catálogo apresenta cada jogo como uma máquina de
+arcade, com marquise, tela, painel de controle e fenda de ficha. Tudo é
+**desenhado em CSS** (`.cabinet` em `assets/css/main.css`) — nenhuma fotografia
+de fliperama de terceiros é usada. A arte do jogo aparece na tela do gabinete.
+
+As páginas dos jogos são geradas por `scripts/generate-game-pages.py`.
