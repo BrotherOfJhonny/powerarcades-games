@@ -1,0 +1,78 @@
+name: "Configurar domínio do Pages"
+
+# Define o domínio personalizado do GitHub Pages pela API, usando o
+# GITHUB_TOKEN efêmero do próprio runner. Evita depender de configuração
+# manual no painel e não exige nenhum token pessoal.
+#
+# Não altera o mecanismo de publicação: o site continua sendo servido por
+# "Deploy from a branch". Este workflow só grava o campo `cname`.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - CNAME
+      - .github/workflows/configurar-dominio.yml
+  workflow_dispatch:
+
+# Menor privilégio: só o necessário para gravar a configuração do Pages.
+permissions:
+  contents: read
+  pages: write
+
+concurrency:
+  group: "pages-domain"
+  cancel-in-progress: false
+
+jobs:
+  dominio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Ler o domínio do arquivo CNAME
+        id: cname
+        run: |
+          if [[ ! -f CNAME ]]; then
+            echo "CNAME ausente — nada a fazer."
+            echo "valor=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          dominio="$(tr -d '[:space:]' < CNAME)"
+          echo "Domínio encontrado: $dominio"
+          echo "valor=$dominio" >> "$GITHUB_OUTPUT"
+
+      - name: Aplicar o domínio no Pages
+        if: steps.cname.outputs.valor != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DOMINIO: ${{ steps.cname.outputs.valor }}
+        run: |
+          set -euo pipefail
+          echo "Configurando $DOMINIO em ${GITHUB_REPOSITORY}"
+          gh api -X PUT "repos/${GITHUB_REPOSITORY}/pages" \
+            -f "cname=${DOMINIO}" \
+            -F "https_enforced=false"
+          echo "Domínio aplicado."
+
+      - name: Exigir HTTPS assim que o certificado for emitido
+        if: steps.cname.outputs.valor != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # A emissão do certificado leva alguns minutos. Tentamos algumas
+          # vezes; se ainda não estiver pronto, o passo não falha o workflow.
+          for i in $(seq 1 20); do
+            if gh api -X PUT "repos/${GITHUB_REPOSITORY}/pages" \
+                 -F "https_enforced=true" >/dev/null 2>&1; then
+              echo "HTTPS obrigatório ativado."
+              exit 0
+            fi
+            echo "Certificado ainda não emitido (tentativa $i). Aguardando..."
+            sleep 30
+          done
+          echo "::warning::HTTPS não pôde ser exigido ainda; o certificado" \
+               "ainda está sendo emitido. Rode este workflow de novo mais tarde."
