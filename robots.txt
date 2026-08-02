@@ -1,14 +1,14 @@
 # PowerArcades Games
-# https://brotherofjhonny.github.io/powerarcades-games/
+# https://arcade.dozeroaobasico.com.br/
 
 User-agent: *
-Allow: /powerarcades-games/$
-Allow: /powerarcades-games/games/
+Allow: /$
+Allow: /games/
 
 # Arquivos de dados do emulador e ROMs não devem ser indexados.
-Disallow: /powerarcades-games/data/
-Disallow: /powerarcades-games/roms/
-Disallow: /powerarcades-games/scripts/
-Disallow: /powerarcades-games/_headers
+Disallow: /data/
+Disallow: /roms/
+Disallow: /scripts/
+Disallow: /_headers
 
-Sitemap: https://brotherofjhonny.github.io/powerarcades-games/sitemap.xml
+Sitemap: https://arcade.dozeroaobasico.com.br/sitemap.xml

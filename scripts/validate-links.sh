@@ -16,7 +16,7 @@ if [[ "$CURRENT_ROOT" != "$EXPECTED_ROOT" ]]; then
 fi
 
 # Prefixo do projeto no GitHub Pages (usado por 404.html).
-SITE_PREFIX="/powerarcades-games"
+SITE_PREFIX=""
 
 # Domínios externos aceitos (apenas links de navegação, nunca recursos).
 ALLOWED_EXTERNAL=(
@@ -25,8 +25,8 @@ ALLOWED_EXTERNAL=(
   "https://www.tiktok.com/@powerarcades"
   "https://github.com/BrotherOfJhonny/powerarcades-games"
   "https://github.com/EmulatorJS/EmulatorJS"
-  "https://brotherofjhonny.github.io/"
-  "https://brotherofjhonny.github.io/powerarcades-games/"
+  "https://dozeroaobasico.com.br/"
+  "https://arcade.dozeroaobasico.com.br/"
   "http://www.sitemaps.org/schemas/sitemap/0.9"
 )
 
@@ -115,7 +115,7 @@ done < <(find . -path ./.git -prune -o -path ./data -prune -o -type f -name '*.h
 
 echo
 echo "== URLs do sitemap =="
-SITE_BASE="https://brotherofjhonny.github.io/powerarcades-games"
+SITE_BASE="https://arcade.dozeroaobasico.com.br"
 while IFS= read -r loc; do
   path="${loc#$SITE_BASE}"
   target=".${path}"
