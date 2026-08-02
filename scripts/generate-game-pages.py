@@ -167,9 +167,9 @@ TEMPLATE = """<!DOCTYPE html>
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="../../" aria-label="PowerArcades Games — página inicial">
-      <img src="../../assets/images/logo-powerarcades.webp" alt="" width="720" height="200" aria-hidden="true">
+      <img class="brand-logo" src="../../assets/images/logo-powerarcades.webp" alt="PowerArcades" width="575" height="260">
       <span class="brand-text">
-        <span class="brand-name">PowerArcades Games</span>
+        <span class="brand-name">GAMES</span>
         <span class="brand-handle">@powerarcades</span>
       </span>
     </a>

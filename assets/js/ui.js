@@ -18,17 +18,33 @@
     return node;
   }
 
+  /**
+   * Monta um gabinete de fliperama para o jogo.
+   * A "tela" do gabinete exibe a arte do jogo, para o visitante escolher
+   * qual máquina quer jogar. Tudo é desenhado em CSS — nenhuma foto de
+   * fliperama de terceiros é usada.
+   */
   function buildCard(game) {
     var item = el("li");
 
-    var card = el("article", "game-card");
-    card.setAttribute("aria-labelledby", "title-" + game.slug);
+    var cab = el("article", "cabinet");
+    cab.setAttribute("data-slug", game.slug);
+    cab.setAttribute("aria-labelledby", "title-" + game.slug);
 
-    /* --- capa ------------------------------------------------------- */
-    var media = el("div", "game-card-media");
+    /* --- marquise (letreiro superior) -------------------------------- */
+    var marquee = el("div", "cab-marquee");
+    var title = el("h3", "cab-marquee-title", game.title);
+    title.id = "title-" + game.slug;
+    marquee.appendChild(title);
+    cab.appendChild(marquee);
+
+    /* --- tela -------------------------------------------------------- */
+    var screen = el("div", "cab-screen");
+    var screenInner = el("div", "cab-screen-inner");
+
     var img = document.createElement("img");
     img.src = game.cover;
-    img.alt = "Arte de capa do jogo " + game.title;
+    img.alt = "Tela do fliperama exibindo " + game.title;
     img.width = 640;
     img.height = 480;
     img.loading = "lazy";
@@ -42,15 +58,27 @@
       }
     });
 
-    media.appendChild(img);
-    card.appendChild(media);
+    screenInner.appendChild(img);
+    screen.appendChild(screenInner);
+    cab.appendChild(screen);
 
-    /* --- corpo ------------------------------------------------------ */
-    var body = el("div", "game-card-body");
+    /* --- painel de controle (decorativo) ----------------------------- */
+    var panel = el("div", "cab-panel");
+    panel.setAttribute("aria-hidden", "true");
 
-    var title = el("h3", "game-card-title", game.title);
-    title.id = "title-" + game.slug;
-    body.appendChild(title);
+    panel.appendChild(el("div", "cab-stick"));
+
+    var buttons = el("div", "cab-buttons");
+    for (var i = 0; i < 4; i++) {
+      buttons.appendChild(el("i"));
+    }
+    panel.appendChild(buttons);
+
+    panel.appendChild(el("div", "cab-coin"));
+    cab.appendChild(panel);
+
+    /* --- corpo do gabinete ------------------------------------------- */
+    var body = el("div", "cab-body");
 
     var meta = el("ul", "game-meta");
     meta.appendChild(el("li", "tag tag-platform", game.platform));
@@ -59,14 +87,13 @@
     if (game.year) meta.appendChild(el("li", "tag", game.year));
     body.appendChild(meta);
 
-    /* --- ação ------------------------------------------------------- */
     var link = el("a", "btn btn-primary", "Jogar agora");
     link.href = game.url;
     link.setAttribute("aria-label", "Jogar agora: " + game.title);
     body.appendChild(link);
 
-    card.appendChild(body);
-    item.appendChild(card);
+    cab.appendChild(body);
+    item.appendChild(cab);
     return item;
   }
 

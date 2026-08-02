@@ -13,6 +13,15 @@
   --white: #f8fafc;
   --grey: #94a3b8;
 
+  /* Dourado do logotipo oficial PowerArcades. */
+  --gold: #f1be1d;
+  --gold-deep: #c9990f;
+
+  /* Materiais do gabinete de fliperama. */
+  --cab-body: #151b2b;
+  --cab-edge: #0a0e18;
+  --cab-panel: #1c2438;
+
   --border: rgba(148, 163, 184, 0.18);
   --border-strong: rgba(0, 174, 239, 0.55);
   --radius: 14px;
@@ -122,21 +131,25 @@ a:hover {
   text-decoration: none;
 }
 
-.brand img {
-  height: 44px;
+.brand-logo {
+  height: 42px;
   width: auto;
+  filter: drop-shadow(0 0 10px rgba(241, 190, 29, 0.35));
 }
 
 .brand-text {
   display: flex;
   flex-direction: column;
   line-height: 1.15;
+  padding-left: 12px;
+  border-left: 2px solid rgba(241, 190, 29, 0.35);
 }
 
 .brand-name {
   font-weight: 800;
   font-size: 1.05rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.14em;
+  color: var(--white);
 }
 
 .brand-handle {
@@ -221,10 +234,28 @@ a:hover {
 }
 
 .hero h1 .accent {
-  background: linear-gradient(92deg, var(--neon), var(--purple) 55%, var(--orange));
+  background: linear-gradient(92deg, var(--gold), var(--neon) 60%, var(--purple));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Logotipo oficial em destaque no hero. */
+.hero-logo {
+  width: min(430px, 78vw);
+  height: auto;
+  margin: 0 auto 6px;
+  filter: drop-shadow(0 0 26px rgba(241, 190, 29, 0.32));
+}
+
+.hero-wordmark {
+  display: block;
+  font-size: clamp(1.1rem, 3.4vw, 1.7rem);
+  font-weight: 800;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  color: var(--white);
+  margin-bottom: 22px;
 }
 
 .hero p {
@@ -267,13 +298,21 @@ a:hover {
 }
 
 .btn-primary {
-  background: linear-gradient(96deg, var(--neon), var(--purple));
-  color: #fff;
-  box-shadow: 0 8px 22px rgba(0, 174, 239, 0.3);
+  background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+  color: #14100a;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-color: rgba(0, 0, 0, 0.45);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.45), 0 10px 24px rgba(241, 190, 29, 0.22);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 12px 30px rgba(0, 174, 239, 0.45);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.45), 0 14px 30px rgba(241, 190, 29, 0.36);
+}
+
+.btn-primary:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.45);
 }
 
 .btn-ghost {
@@ -317,64 +356,259 @@ a:hover {
 
 .catalog-grid {
   display: grid;
-  gap: 22px;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 30px 26px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.game-card {
+/* ==========================================================================
+   Gabinete de fliperama
+   Desenhado inteiramente em CSS. A "tela" do gabinete mostra a arte do
+   jogo, para o visitante escolher a máquina que quer jogar.
+   ========================================================================== */
+
+/* Cada item da grade estica para a altura da linha, para que os
+   gabinetes fiquem alinhados independentemente do tamanho do título. */
+.catalog-grid > li {
+  display: flex;
+}
+
+.cabinet {
+  --accent: var(--neon);
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 18px 18px 8px 8px;
+  background:
+    linear-gradient(180deg, var(--cab-body), var(--cab-edge) 88%);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    var(--shadow);
   overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: transform var(--speed), border-color var(--speed),
-    box-shadow var(--speed);
+  transition: transform var(--speed), box-shadow var(--speed),
+    border-color var(--speed);
 }
 
-.game-card:hover,
-.game-card:focus-within {
-  transform: translateY(-5px);
-  border-color: var(--border-strong);
-  box-shadow: 0 16px 38px rgba(0, 174, 239, 0.22);
+/* Laterais do gabinete, com a cor do jogo. */
+.cabinet::before,
+.cabinet::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 9px;
+  background: linear-gradient(180deg, var(--accent), transparent 78%);
+  opacity: 0.55;
+  pointer-events: none;
 }
 
-.game-card-media {
+.cabinet::before { left: 0; }
+.cabinet::after  { right: 0; }
+
+.cabinet:hover,
+.cabinet:focus-within {
+  transform: translateY(-6px);
+  border-color: rgba(241, 190, 29, 0.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 20px 44px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(241, 190, 29, 0.14);
+}
+
+/* ------------------------------------------------------------- marquise -- */
+
+.cab-marquee {
+  margin: 12px 14px 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+  border: 2px solid rgba(0, 0, 0, 0.55);
+  box-shadow:
+    0 0 22px rgba(241, 190, 29, 0.35),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.cab-marquee-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Duas linhas sempre, para alinhar as marquises entre si. */
+  min-height: 2.4em;
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #14100a;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* ----------------------------------------------------------------- tela -- */
+
+.cab-screen {
+  position: relative;
+  margin: 0 14px;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #05070c, #000);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.9);
+}
+
+.cab-screen-inner {
   position: relative;
   aspect-ratio: 4 / 3;
-  background: var(--bg-soft);
+  border-radius: 6px;
   overflow: hidden;
+  background: #000;
 }
 
-.game-card-media img {
+.cab-screen-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 260ms ease;
+  transition: transform 300ms ease, filter 300ms ease;
 }
 
-.game-card:hover .game-card-media img {
-  transform: scale(1.04);
+.cabinet:hover .cab-screen-inner img,
+.cabinet:focus-within .cab-screen-inner img {
+  transform: scale(1.05);
+  filter: saturate(1.2) brightness(1.12);
 }
 
-.game-card-body {
-  padding: 16px 18px 18px;
+/* Linhas de varredura + brilho do vidro sobre a tela. */
+.cab-screen-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.14) 0%,
+                    rgba(255, 255, 255, 0) 42%),
+    repeating-linear-gradient(180deg,
+                    rgba(0, 0, 0, 0.32) 0 1px,
+                    rgba(0, 0, 0, 0) 1px 3px);
+}
+
+/* Brilho colorido escapando da tela. */
+.cab-screen::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 8px;
+  pointer-events: none;
+  box-shadow: 0 0 26px 2px var(--accent);
+  opacity: 0.2;
+  transition: opacity var(--speed);
+}
+
+.cabinet:hover .cab-screen::after,
+.cabinet:focus-within .cab-screen::after {
+  opacity: 0.5;
+}
+
+/* -------------------------------------------------- painel de controle --- */
+
+.cab-panel {
+  margin: 12px 14px 0;
+  padding: 12px 14px;
+  border-radius: 8px 8px 4px 4px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(180deg, var(--cab-panel), #10162340);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Manche */
+.cab-stick {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  flex: none;
+}
+
+.cab-stick::before {   /* base */
+  content: "";
+  position: absolute;
+  left: 3px;
+  bottom: 0;
+  width: 24px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, #46506b, #1d2438);
+}
+
+.cab-stick::after {    /* haste + bola */
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  width: 8px;
+  height: 22px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #e5e9f2, #8d96ad);
+  box-shadow: 0 -7px 0 -1px var(--accent);
+}
+
+/* Botões */
+.cab-buttons {
+  display: flex;
+  gap: 7px;
+}
+
+.cab-buttons i {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%,
+              rgba(255, 255, 255, 0.75), transparent 55%),
+              var(--accent);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.cab-buttons i:nth-child(2) { background-color: var(--gold); }
+.cab-buttons i:nth-child(4) { background-color: var(--purple); }
+
+/* Fenda de ficha */
+.cab-coin {
+  margin-left: auto;
+  width: 26px;
+  height: 12px;
+  border-radius: 3px;
+  background: #05070c;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* ----------------------------------------------------------- rodapé ----- */
+
+.cab-body {
+  padding: 14px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   flex: 1;
 }
 
-.game-card-title {
-  margin: 0;
-  font-size: 1.06rem;
-  font-weight: 700;
-  line-height: 1.3;
+/* Empurra o botão para a base do gabinete, alinhando os CTAs. */
+.cab-body .btn {
+  margin-top: auto;
 }
+
+/* Cores por jogo — sem estilos inline, compatível com a CSP restrita. */
+.cabinet[data-slug="captain-america-and-the-avengers"] { --accent: #00aeef; }
+.cabinet[data-slug="super-mario-world"]                { --accent: #ff6b00; }
+.cabinet[data-slug="tmnt-4-turtles-in-time"]           { --accent: #22c55e; }
+.cabinet[data-slug="top-gear-2"]                       { --accent: #7c3aed; }
 
 .game-meta {
   display: flex;
