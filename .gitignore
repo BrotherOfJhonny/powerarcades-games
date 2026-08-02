@@ -20,6 +20,8 @@ Thumbs.db
 # ------------------------------------------------------------ build / cache
 node_modules/
 .cache/
+__pycache__/
+*.py[cod]
 coverage/
 dist-temp/
 *.log
