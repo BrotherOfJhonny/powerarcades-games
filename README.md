@@ -225,17 +225,34 @@ arcade, com marquise, tela, painel de controle e fenda de ficha. Tudo é
 de fliperama de terceiros é usada.
 
 **Modo atração (loops animados):** a tela de cada gabinete exibe um WebP
-animado gerado por `scripts/generate-attract-loops.py` — grade em fuga
-correndo em direção ao observador, mais um motivo abstrato por gênero
-(escudo girando, blocos quicando, bueiro rodando, rastros de velocidade).
-São 24 quadros a 100 ms (loop de 2,4 s), `448×336`, ~597 KB no total.
+animado gerado por `scripts/generate-pixel-scenes.py`. Cada tela é uma
+**cena de jogo em pixel art**, montada só com convenções de gênero — que
+não são protegidas:
+
+| Gabinete | Cena |
+| --- | --- |
+| Top Gear 2 | Pista em perspectiva, sol vazado, montanhas em paralaxe, marcos de beira de pista, carro visto por trás, HUD de velocidade |
+| Super Mario World | Chão em blocos, colinas e nuvens em paralaxe, plataformas flutuantes, moedas girando, HUD de moedas/tempo |
+| TMNT IV | Corredor subterrâneo com tubulações, válvulas, correntes, canal d'água, piso gradeado e dois lutadores, HUD de energia |
+| Captain America | Silhueta noturna de prédios em duas camadas, janelas acesas, lua, telhado rolando, figura correndo, HUD de energia |
+
+São 24 quadros a 100 ms (loop de 2,4 s), `448×336`, ~575 KB no total.
+
+Desenho em `224×168` e amplio com **vizinho mais próximo** para `448×336`,
+o que produz pixels quadrados e nítidos. O HUD usa uma **fonte bitmap 3×5
+definida no próprio script**, sem depender de fonte instalada.
 
 O loop fecha perfeitamente porque cada elemento avança exatamente um período
 completo ao longo dos quadros — o quadro 24 é idêntico ao quadro 0.
 
 Scanlines e vinheta **não** são gravadas no arquivo: o CSS do gabinete já as
-desenha por cima, e tirar esse detalhe de alta frequência do vídeo reduziu
-bastante o peso da compressão.
+desenha por cima, e tirar esse detalhe de alta frequência reduziu bastante o
+peso da compressão.
+
+> Os personagens são criações genéricas (um robô, vultos encapuzados, uma
+> figura de capa). Não representam, imitam nem derivam de personagens
+> protegidos, e nenhuma captura de tela, sprite ou cenário de jogo existente
+> foi usada como base.
 
 | Arquivo | Uso |
 | --- | --- |
