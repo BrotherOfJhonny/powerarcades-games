@@ -11,6 +11,18 @@
 
   var FALLBACK_COVER = "assets/images/default-game-cover.webp";
 
+  /**
+   * Um WebP animado não pode ser pausado por CSS. Para respeitar
+   * prefers-reduced-motion de verdade, a troca pela arte estática
+   * precisa acontecer aqui.
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
   function el(tag, className, text) {
     var node = document.createElement(tag);
     if (className) node.className = className;
@@ -43,18 +55,29 @@
     var screenInner = el("div", "cab-screen-inner");
 
     var img = document.createElement("img");
-    img.src = game.cover;
+
+    // Cadeia de fallback: loop animado -> capa estática -> capa padrão.
+    // Se o WebP animado falhar, a tela ainda mostra a arte parada.
+    var sources = [];
+    if (game.loop && !prefersReducedMotion()) sources.push(game.loop);
+    if (game.cover) sources.push(game.cover);
+    sources.push(FALLBACK_COVER);
+
+    var attempt = 0;
+    img.src = sources[attempt];
     img.alt = "Tela do fliperama exibindo " + game.title;
     img.width = 640;
     img.height = 480;
     img.loading = "lazy";
     img.decoding = "async";
 
-    // Fallback de imagem sem handler inline.
-    img.addEventListener("error", function onCoverError() {
-      img.removeEventListener("error", onCoverError);
-      if (img.getAttribute("src") !== FALLBACK_COVER) {
-        img.src = FALLBACK_COVER;
+    // Fallback sem handler inline.
+    img.addEventListener("error", function onSourceError() {
+      attempt += 1;
+      if (attempt < sources.length) {
+        img.src = sources[attempt];
+      } else {
+        img.removeEventListener("error", onSourceError);
       }
     });
 

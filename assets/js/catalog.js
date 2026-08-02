@@ -19,6 +19,7 @@
       players: "1–2 jogadores",
       year: "1993",
       cover: "assets/images/games/captain-america-and-the-avengers.webp",
+      loop: "assets/images/games/captain-america-and-the-avengers-loop.webp",
       url: "games/captain-america-and-the-avengers/",
       rom: "roms/captain-america-and-the-avengers.sfc",
       description:
@@ -33,6 +34,7 @@
       players: "1–2 jogadores",
       year: "1990",
       cover: "assets/images/games/super-mario-world.webp",
+      loop: "assets/images/games/super-mario-world-loop.webp",
       url: "games/super-mario-world/",
       rom: "roms/super-mario-world.sfc",
       description:
@@ -47,6 +49,7 @@
       players: "1–2 jogadores",
       year: "1992",
       cover: "assets/images/games/tmnt-4-turtles-in-time.webp",
+      loop: "assets/images/games/tmnt-4-turtles-in-time-loop.webp",
       url: "games/tmnt-4-turtles-in-time/",
       rom: "roms/tmnt-4-turtles-in-time.sfc",
       description:
@@ -61,6 +64,7 @@
       players: "1–2 jogadores",
       year: "1993",
       cover: "assets/images/games/top-gear-2.webp",
+      loop: "assets/images/games/top-gear-2-loop.webp",
       url: "games/top-gear-2/",
       // Capitalização preservada exatamente como o arquivo em disco.
       // O GitHub Pages diferencia maiúsculas de minúsculas.

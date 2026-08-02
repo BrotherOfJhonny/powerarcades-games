@@ -503,20 +503,17 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Modo atração: deriva lenta e contínua, como um demo em loop. */
-  animation: pa-attract 26s ease-in-out infinite alternate;
-  transition: filter 300ms ease;
+  /* O modo atração agora vem do próprio WebP animado. Aqui basta uma
+     leve ampliação para o quadro encher a tela curva — sem deriva, que
+     somada ao movimento do loop deixaria a imagem enjoativa. */
+  transform: scale(1.03);
+  transition: filter 300ms ease, transform 300ms ease;
 }
 
 .cabinet:hover .cab-screen-inner img,
 .cabinet:focus-within .cab-screen-inner img {
   filter: saturate(1.25) brightness(1.15);
-}
-
-@keyframes pa-attract {
-  0%   { transform: scale(1.06) translate3d(0, 0, 0); }
-  50%  { transform: scale(1.13) translate3d(-2%, -1.4%, 0); }
-  100% { transform: scale(1.06) translate3d(1.5%, 1%, 0); }
+  transform: scale(1.07);
 }
 
 /* Faixa de brilho que varre a tela de cima a baixo (rolagem do CRT). */
@@ -869,9 +866,11 @@ kbd {
     transform: none;
   }
 
+  /* O WebP animado não pode ser pausado por CSS; a redução de movimento
+     é feita em JS, trocando o loop pela capa estática (assets/js/ui.js). */
   .cab-screen-inner img {
     animation: none;
-    transform: scale(1.06);
+    transform: scale(1.03);
   }
 
   .cab-screen-inner::before {

@@ -87,6 +87,10 @@ check "/assets/images/games/captain-america-and-the-avengers.webp" 200
 check "/assets/images/games/super-mario-world.webp" 200
 check "/assets/images/games/tmnt-4-turtles-in-time.webp" 200
 check "/assets/images/games/top-gear-2.webp" 200
+check "/assets/images/games/captain-america-and-the-avengers-loop.webp" 200
+check "/assets/images/games/super-mario-world-loop.webp" 200
+check "/assets/images/games/tmnt-4-turtles-in-time-loop.webp" 200
+check "/assets/images/games/top-gear-2-loop.webp" 200
 check "/assets/icons/youtube.svg" 200
 check "/assets/icons/instagram.svg" 200
 check "/assets/icons/tiktok.svg" 200

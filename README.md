@@ -222,6 +222,28 @@ foi baixado de sites de ROM.
 **Gabinetes de fliperama:** o catálogo apresenta cada jogo como uma máquina de
 arcade, com marquise, tela, painel de controle e fenda de ficha. Tudo é
 **desenhado em CSS** (`.cabinet` em `assets/css/main.css`) — nenhuma fotografia
-de fliperama de terceiros é usada. A arte do jogo aparece na tela do gabinete.
+de fliperama de terceiros é usada.
+
+**Modo atração (loops animados):** a tela de cada gabinete exibe um WebP
+animado gerado por `scripts/generate-attract-loops.py` — grade em fuga
+correndo em direção ao observador, mais um motivo abstrato por gênero
+(escudo girando, blocos quicando, bueiro rodando, rastros de velocidade).
+São 24 quadros a 100 ms (loop de 2,4 s), `448×336`, ~597 KB no total.
+
+O loop fecha perfeitamente porque cada elemento avança exatamente um período
+completo ao longo dos quadros — o quadro 24 é idêntico ao quadro 0.
+
+Scanlines e vinheta **não** são gravadas no arquivo: o CSS do gabinete já as
+desenha por cima, e tirar esse detalhe de alta frequência do vídeo reduziu
+bastante o peso da compressão.
+
+| Arquivo | Uso |
+| --- | --- |
+| `<slug>.webp` | arte estática — `og:image` e fallback |
+| `<slug>-loop.webp` | animação exibida na tela do gabinete |
+
+`assets/js/ui.js` usa a cadeia **loop → capa estática → capa padrão**, e troca
+o loop pela arte parada quando o visitante pede `prefers-reduced-motion`
+(um WebP animado não pode ser pausado por CSS, então essa troca é feita em JS).
 
 As páginas dos jogos são geradas por `scripts/generate-game-pages.py`.
