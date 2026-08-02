@@ -9,5 +9,6 @@ Allow: /powerarcades-games/games/
 Disallow: /powerarcades-games/data/
 Disallow: /powerarcades-games/roms/
 Disallow: /powerarcades-games/scripts/
+Disallow: /powerarcades-games/_headers
 
 Sitemap: https://brotherofjhonny.github.io/powerarcades-games/sitemap.xml

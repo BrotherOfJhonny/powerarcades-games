@@ -88,6 +88,69 @@ sem `blob:`, sem `wasm-unsafe-eval`, `worker-src 'none'`.
 
 ---
 
+## 2.1 Cabeçalhos HTTP — limitação do GitHub Pages
+
+O GitHub Pages **não permite definir cabeçalhos de resposta**. Só envia
+`Strict-Transport-Security`. Isso tem consequências reais e verificadas:
+
+| Proteção | Situação | Observação |
+| --- | --- | --- |
+| CSP | ✅ ativa | via `<meta>`; testada em navegador com **0 violações** |
+| Referrer-Policy | ✅ ativa | `<meta name="referrer">` **é** honrado pelo navegador |
+| HSTS | ✅ ativa | enviada pelo GitHub |
+| `X-Frame-Options` | ❌ ausente | header-only |
+| `frame-ancestors` | ❌ ausente | ignorada em `<meta>` |
+| `X-Content-Type-Options` | ❌ ausente | header-only |
+| `Permissions-Policy` | ❌ ausente | header-only |
+| COOP / COEP / CORP | ❌ ausentes | header-only |
+
+Ferramentas como o **securityheaders.com** leem apenas cabeçalhos HTTP, então
+reportam CSP e Referrer-Policy como ausentes mesmo estando ativas. A nota
+subestima a postura real — mas as cinco últimas linhas da tabela são falhas
+genuínas.
+
+### Prova de que `X-Frame-Options` não funciona via `<meta>`
+
+Teste feito em Chromium, servindo a mesma página de três formas:
+
+| Entrega | Enquadrou? |
+| --- | --- |
+| `<meta http-equiv="X-Frame-Options" content="DENY">` | **sim** — ignorado |
+| Cabeçalho HTTP `X-Frame-Options: DENY` | **não** — bloqueado |
+| Sem proteção | sim |
+
+O próprio navegador emite:
+`X-Frame-Options may only be set via an HTTP header sent along with a
+document. It may not be set inside <meta>.`
+
+### Clickjacking: risco aceito e mitigado parcialmente
+
+O site **pode ser enquadrado** por terceiros (confirmado por exploração).
+Como não há login, formulário nem ação que altere estado, não existe clique
+a ser sequestrado — o risco concreto é **uso indevido da marca**, com o
+portal embutido em página de terceiros.
+
+Mitigação atual: `assets/js/frame-guard.js`, que tenta escapar do quadro e,
+se bloqueado por `sandbox`, oculta o conteúdo e oferece link para a origem
+oficial. É **paliativo**, não solução.
+
+Solução definitiva: servir o site por um host que envie cabeçalhos. O arquivo
+[`_headers`](_headers) na raiz já traz o conjunto completo pronto para
+Cloudflare Pages, Netlify ou Cloudflare Transform Rules à frente do Pages.
+
+> Bônus de desempenho: `COOP` + `COEP` habilitam `SharedArrayBuffer`, o que
+> permite ao EmulatorJS usar `data/cores/snes9x-thread-wasm.data` (já incluído)
+> em vez do núcleo sem threads.
+
+## 2.2 CORS aberto em todo o conteúdo
+
+O GitHub Pages responde `access-control-allow-origin: *` em **todos** os
+arquivos, incluindo `roms/*.sfc`. Qualquer site pode lê-los por `fetch`.
+Não é configurável no Pages; o `_headers` corrige com
+`Cross-Origin-Resource-Policy: same-origin` no host novo.
+
+---
+
 ## 3. Alterações no EmulatorJS
 
 O EmulatorJS 4.2.3 é redistribuído aqui sob GPL-3.0. Três pontos que geravam

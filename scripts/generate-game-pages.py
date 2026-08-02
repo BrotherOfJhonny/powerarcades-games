@@ -324,6 +324,7 @@ TEMPLATE = """<!DOCTYPE html>
   </div>
 </footer>
 
+<script src="../../assets/js/frame-guard.js"></script>
 <script src="../../assets/js/game-loader.js"></script>
 </body>
 </html>

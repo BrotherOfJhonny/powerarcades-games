@@ -20,9 +20,13 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 ROOT = "/home/kali/Desktop/powerarcades-games"
 IMG = os.path.join(ROOT, "assets/images")
 
+# O PNG original do logotipo é insumo de build e NÃO fica no repositório:
+# ele seria servido publicamente pelo GitHub Pages sem necessidade. Mantenha-o
+# fora da árvore publicada e aponte o caminho aqui (ou via LOGO_SRC).
 SRC_CANDIDATES = [
+    os.environ.get("LOGO_SRC", ""),
     "/media/sf_VMCompart/logo/Logo_power.png",
-    os.path.join(ROOT, "assets/images/_logo-origem.png"),
+    os.path.expanduser("~/Desktop/Logo_power.png"),
 ]
 
 GOLD = (241, 190, 29)
@@ -39,9 +43,11 @@ F_REG = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 
 def find_source():
     for p in SRC_CANDIDATES:
-        if os.path.isfile(p):
+        if p and os.path.isfile(p):
             return p
-    sys.exit("Logo de origem nao encontrado em: " + ", ".join(SRC_CANDIDATES))
+    sys.exit("Logo de origem nao encontrado. Defina LOGO_SRC=/caminho/logo.png "
+             "ou coloque o arquivo em: "
+             + ", ".join(p for p in SRC_CANDIDATES if p))
 
 
 def binary_dilate(mask, r):
