@@ -5,10 +5,10 @@ como site estático no GitHub Pages. A emulação roda inteiramente no navegador
 com o **EmulatorJS hospedado dentro do próprio repositório** — sem CDN, sem
 anúncios, sem rastreadores e sem qualquer requisição para fora do domínio.
 
-- **Portal:** <https://brotherofjhonny.github.io/powerarcades-games/>
+- **Portal:** <https://arcade.dozeroaobasico.com.br/>
 - **Repositório:** <https://github.com/BrotherOfJhonny/powerarcades-games>
 
-O site principal <https://brotherofjhonny.github.io/> é um projeto separado e
+O site principal <https://dozeroaobasico.com.br/> é um projeto separado e
 **não é alterado** por este repositório.
 
 ---
@@ -17,10 +17,10 @@ O site principal <https://brotherofjhonny.github.io/> é um projeto separado e
 
 | Jogo | Plataforma | Gênero | URL |
 | --- | --- | --- | --- |
-| Captain America and the Avengers | Super Nintendo | Ação | [`/games/captain-america-and-the-avengers/`](https://brotherofjhonny.github.io/powerarcades-games/games/captain-america-and-the-avengers/) |
-| Super Mario World | Super Nintendo | Plataforma | [`/games/super-mario-world/`](https://brotherofjhonny.github.io/powerarcades-games/games/super-mario-world/) |
-| Teenage Mutant Ninja Turtles IV: Turtles in Time | Super Nintendo | Beat 'em up | [`/games/tmnt-4-turtles-in-time/`](https://brotherofjhonny.github.io/powerarcades-games/games/tmnt-4-turtles-in-time/) |
-| Top Gear 2 | Super Nintendo | Corrida | [`/games/top-gear-2/`](https://brotherofjhonny.github.io/powerarcades-games/games/top-gear-2/) |
+| Captain America and the Avengers | Super Nintendo | Ação | [`/games/captain-america-and-the-avengers/`](https://arcade.dozeroaobasico.com.br/games/captain-america-and-the-avengers/) |
+| Super Mario World | Super Nintendo | Plataforma | [`/games/super-mario-world/`](https://arcade.dozeroaobasico.com.br/games/super-mario-world/) |
+| Teenage Mutant Ninja Turtles IV: Turtles in Time | Super Nintendo | Beat 'em up | [`/games/tmnt-4-turtles-in-time/`](https://arcade.dozeroaobasico.com.br/games/tmnt-4-turtles-in-time/) |
+| Top Gear 2 | Super Nintendo | Corrida | [`/games/top-gear-2/`](https://arcade.dozeroaobasico.com.br/games/top-gear-2/) |
 
 ---
 
@@ -135,7 +135,7 @@ ln -sfn /home/kali/Desktop/powerarcades-games /tmp/pa-serve/powerarcades-games
 python3 -m http.server 8080 --directory /tmp/pa-serve
 ```
 
-Depois acesse <http://localhost:8080/powerarcades-games/>.
+Depois acesse <http://localhost:8080/>.
 
 > Abrir os arquivos com `file://` **não funciona**: o emulador precisa de HTTP
 > para carregar o núcleo WebAssembly. A página detecta esse caso e exibe a

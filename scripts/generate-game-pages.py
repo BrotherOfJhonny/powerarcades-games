@@ -4,7 +4,7 @@ import html
 import os
 
 ROOT = "/home/kali/Desktop/powerarcades-games"
-BASE = "https://brotherofjhonny.github.io/powerarcades-games"
+BASE = "https://arcade.dozeroaobasico.com.br"
 
 # Politica das paginas de jogo.
 #
@@ -311,7 +311,7 @@ TEMPLATE = """<!DOCTYPE html>
         <h3>Projeto</h3>
         <ul class="footer-links">
           <li><a href="https://github.com/BrotherOfJhonny/powerarcades-games" target="_blank" rel="noopener noreferrer external">Código-fonte</a></li>
-          <li><a href="https://brotherofjhonny.github.io/" target="_blank" rel="noopener noreferrer external">Site principal</a></li>
+          <li><a href="https://dozeroaobasico.com.br/" target="_blank" rel="noopener noreferrer external">Site principal</a></li>
         </ul>
       </div>
     </div>

@@ -2,9 +2,13 @@
 #
 # PowerArcades Games — teste HTTP local.
 #
-# Sobe um servidor estático espelhando o caminho de produção
-# (/powerarcades-games/) e confere o código HTTP de cada recurso crítico.
-# Nada é enviado para fora da máquina.
+# Sobe um servidor estático na raiz do projeto e confere o código HTTP de
+# cada recurso crítico. Nada é enviado para fora da máquina.
+#
+# Desde a migração para o subdomínio próprio (arcade.dozeroaobasico.com.br),
+# o portal fica na RAIZ do site. Antes ele vivia sob /powerarcades-games/ e
+# este script precisava de um espelho com symlink para reproduzir o prefixo;
+# isso deixou de ser necessário.
 #
 set -uo pipefail
 
@@ -17,22 +21,15 @@ if [[ "$CURRENT_ROOT" != "$EXPECTED_ROOT" ]]; then
 fi
 
 PORT="${PORT:-8080}"
-BASE="http://127.0.0.1:${PORT}/powerarcades-games"
-
-# Espelho temporário: o projeto precisa ser servido sob o mesmo prefixo
-# de URL que o GitHub Pages usa, senão 404.html e os caminhos absolutos
-# não podem ser testados de verdade.
-SERVE_DIR="$(mktemp -d)"
-ln -s "$EXPECTED_ROOT" "$SERVE_DIR/powerarcades-games"
+BASE="http://127.0.0.1:${PORT}"
 
 cleanup() {
   [[ -n "${SERVER_PID:-}" ]] && kill "$SERVER_PID" 2>/dev/null
   wait "${SERVER_PID:-}" 2>/dev/null
-  rm -rf "$SERVE_DIR"
 }
 trap cleanup EXIT
 
-python3 -m http.server "$PORT" --bind 127.0.0.1 --directory "$SERVE_DIR" \
+python3 -m http.server "$PORT" --bind 127.0.0.1 --directory "$EXPECTED_ROOT" \
   >/dev/null 2>&1 &
 SERVER_PID=$!
 

@@ -25,7 +25,7 @@
   // Página no topo: nada a fazer.
   if (window.top === window.self) return;
 
-  var OFFICIAL = "https://brotherofjhonny.github.io/powerarcades-games/";
+  var OFFICIAL = "https://arcade.dozeroaobasico.com.br/";
 
   // Esconde imediatamente, antes de qualquer pintura, para não servir de isca.
   // Atribuição via CSSOM não é bloqueada pela CSP (só `style="..."` no HTML).
