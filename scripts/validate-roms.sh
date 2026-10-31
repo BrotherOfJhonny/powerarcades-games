@@ -8,7 +8,7 @@
 #
 set -euo pipefail
 
-EXPECTED_ROOT="/home/kali/Desktop/powerarcades-games"
+EXPECTED_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 CURRENT_ROOT="$(pwd -P)"
 
 if [[ "$CURRENT_ROOT" != "$EXPECTED_ROOT" ]]; then
@@ -67,10 +67,9 @@ for rom in "${EXPECTED_ROMS[@]}"; do
     continue
   fi
 
-  # 4. Tipo real do conteúdo.
-  desc=$(file -b "$path")
-  if [[ "$desc" != *"Super NES ROM image"* ]]; then
-    printf '%-42s %10s  %s\n' "$rom" "$size" "FALHA: não é ROM de SNES ($desc)"
+  # 4. Cabeçalho SNES: libmagic pode classificar ROMs válidas como data/zlib.
+  if ! python3 "$EXPECTED_ROOT/scripts/check-snes-header.py" "$path"; then
+    printf '%-42s %10s  %s\n' "$rom" "$size" "FALHA: cabeçalho SNES inválido"
     failures=$((failures + 1))
     continue
   fi

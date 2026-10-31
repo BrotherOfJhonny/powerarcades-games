@@ -12,7 +12,7 @@
 #
 set -uo pipefail
 
-EXPECTED_ROOT="/home/kali/Desktop/powerarcades-games"
+EXPECTED_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 CURRENT_ROOT="$(pwd -P)"
 
 if [[ "$CURRENT_ROOT" != "$EXPECTED_ROOT" ]]; then
@@ -64,6 +64,11 @@ check "/games/captain-america-and-the-avengers/" 200
 check "/games/super-mario-world/" 200
 check "/games/tmnt-4-turtles-in-time/" 200
 check "/games/top-gear-2/" 200
+check "/games/devfest-galactic/" 200
+check "/games/devfest-galactic/engine.js" 200
+check "/games/devfest-galactic/game.js" 200
+check "/games/devfest-galactic/style.css" 200
+check "/games/devfest-galactic/assets/chapter-qr.png" 200
 check "/404.html" 200
 
 echo

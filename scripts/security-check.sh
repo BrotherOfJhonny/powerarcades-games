@@ -7,7 +7,7 @@
 #
 set -uo pipefail
 
-EXPECTED_ROOT="/home/kali/Desktop/powerarcades-games"
+EXPECTED_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 CURRENT_ROOT="$(pwd -P)"
 
 if [[ "$CURRENT_ROOT" != "$EXPECTED_ROOT" ]]; then
@@ -174,7 +174,7 @@ while IFS= read -r file; do
     danger_found=$((danger_found + 1))
     findings=$((findings + 1))
   done < <(grep -nE '\beval\(|new Function\(|document\.write\(|\.innerHTML[[:space:]]*=|URLSearchParams' "$file" 2>/dev/null)
-done < <(find ./assets/js -type f -name '*.js' 2>/dev/null)
+done < <(find ./assets/js ./games/devfest-galactic -type f -name '*.js' 2>/dev/null)
 
 if [[ "$danger_found" -eq 0 ]]; then
   echo "  Nenhum eval/new Function/document.write/innerHTML/URLSearchParams."

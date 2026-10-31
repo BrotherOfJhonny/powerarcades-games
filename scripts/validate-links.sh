@@ -7,7 +7,7 @@
 #
 set -uo pipefail
 
-EXPECTED_ROOT="/home/kali/Desktop/powerarcades-games"
+EXPECTED_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 CURRENT_ROOT="$(pwd -P)"
 
 if [[ "$CURRENT_ROOT" != "$EXPECTED_ROOT" ]]; then
@@ -20,6 +20,7 @@ SITE_PREFIX=""
 
 # Domínios externos aceitos (apenas links de navegação, nunca recursos).
 ALLOWED_EXTERNAL=(
+  "https://www.owasp.community/chapters/sjc"
   "https://www.youtube.com/@powerarcades"
   "https://www.instagram.com/powerarcades"
   "https://www.tiktok.com/@powerarcades"

@@ -12,6 +12,18 @@
 
   var games = Object.freeze([
     Object.freeze({
+      slug: "devfest-galactic",
+      title: "DevFest Galactic 2026 · OWASP SJC",
+      platform: "Arcade web original",
+      genre: "Nave / Shoot 'em up",
+      players: "1 jogador",
+      year: "2026",
+      cover: "assets/images/games/devfest-galactic.png",
+      url: "games/devfest-galactic/",
+      rom: null,
+      description: "Jogue com a OWASP São José dos Campos no DevFest 2026. Edição SITE com ranking local separado do bartop do estande."
+    }),
+    Object.freeze({
       slug: "captain-america-and-the-avengers",
       title: "Captain America and the Avengers",
       platform: "Super Nintendo",

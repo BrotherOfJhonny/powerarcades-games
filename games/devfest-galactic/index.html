@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src 'self'; media-src 'none'; worker-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
+<title>DevFest Galactic 2026 · Estande OWASP SJC — PowerArcades</title>
+<meta name="description" content="Defenda a galáxia com a OWASP São José dos Campos no DevFest 2026. Jogo arcade original com teclado, controle e toque. Edição site com ranking local separado do bartop.">
+<meta name="theme-color" content="#060a18">
+<meta property="og:title" content="DevFest Galactic 2026 · OWASP São José dos Campos">
+<meta property="og:description" content="Jogue online e encontre a comunidade no estande OWASP SJC no DevFest 2026!">
+<meta property="og:image" content="https://arcade.dozeroaobasico.com.br/assets/images/games/devfest-galactic.png">
+<meta property="og:url" content="https://arcade.dozeroaobasico.com.br/games/devfest-galactic/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arcade.dozeroaobasico.com.br/games/devfest-galactic/">
+<link rel="icon" href="../../assets/images/favicon.png">
+<link rel="stylesheet" href="style.css">
+<script src="../../assets/js/frame-guard.js" defer></script>
+<script src="engine.js" defer></script>
+<script src="game.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#jogo">Pular para o jogo</a>
+<header><a href="../../">← PowerArcades Games</a><span>DEVFEST 2026 / GDG SJC</span><a href="https://www.owasp.community/chapters/sjc" target="_blank" rel="noopener noreferrer">Comunidade OWASP SJC ↗</a></header>
+<main>
+<section class="intro" aria-labelledby="title">
+  <div><p class="eyebrow">05 DEZ 2026 · PIT · SÃO JOSÉ DOS CAMPOS</p><h1 id="title">DevFest <em>Galactic</em></h1><p>Defenda a galáxia. Encontre sua comunidade no <strong>estande OWASP São José dos Campos</strong>.</p></div>
+  <div class="brand"><img src="assets/owasp.png" width="2048" height="700" alt="OWASP São José dos Campos Chapter"></div>
+</section>
+<section id="jogo" aria-label="DevFest Galactic" tabindex="-1">
+  <div class="stage"><canvas id="screen" width="1920" height="1080" tabindex="0" aria-label="Tela do arcade: setas movem, Espaço ou Z atira, Enter inicia."></canvas><div id="loading" role="status">Preparando a missão…</div></div>
+  <div class="toolbar"><button id="start" disabled>Iniciar missão</button><button id="ranking" disabled>Ranking neste navegador</button><button id="sound" aria-pressed="true">Som ligado</button><button id="fullscreen">Tela cheia</button></div>
+  <div class="touch" aria-label="Controles de toque"><button data-hold="left" aria-label="Mover para a esquerda">◀</button><button data-hold="right" aria-label="Mover para a direita">▶</button><button data-hold="fire" class="fire">TIRO / CONFIRMAR</button></div>
+  <p id="status" role="status" aria-live="polite">Carregando imagens locais…</p>
+</section>
+<section id="name-panel" class="panel" hidden aria-labelledby="name-title">
+  <h2 id="name-title">Sua missão merece um nome.</h2><p>Use o direcional para escolher letras e <strong>o mesmo botão de tiro para confirmar</strong>. Selecione ✓ para salvar.</p>
+  <form id="name-form"><label for="player-name">Apelido no ranking (até 12 caracteres)</label><input id="player-name" maxlength="12" autocomplete="off" inputmode="text" placeholder="SEU APELIDO"><div id="keyboard" class="keyboard" aria-label="Teclado virtual"></div><button type="submit">Salvar nome e pontuação</button></form>
+  <p id="save-error" role="alert"></p>
+</section>
+<section id="result-panel" class="panel" hidden aria-labelledby="result-title">
+  <p class="eyebrow">ORIGEM: SITE · REGISTRO NESTE NAVEGADOR</p><h2 id="result-title">Sua missão com a OWASP SJC</h2>
+  <p>Fotografe ou baixe seu cartão. Este resultado online é separado do campeonato presencial no bartop.</p>
+  <canvas id="card" width="1080" height="1350" aria-label="Cartão com apelido, pontos, colocação local, origem SITE e data/hora."></canvas>
+  <div class="toolbar"><button id="download-feed">Baixar para feed</button><button id="download-story">Baixar para Stories</button><button id="again">Jogar novamente</button></div>
+  <p class="disclosure">Registro local, sem validação por servidor. O QR divulga a comunidade; não autentica a pontuação.</p>
+</section>
+<section id="ranking-panel" class="panel" hidden aria-labelledby="ranking-title"><h2 id="ranking-title">Ranking neste navegador</h2><p>Categoria SITE. Os resultados do estande ficam no bartop.</p><ol id="score-list"></ol></section>
+<section class="details"><article><h2>Uma missão, uma comunidade.</h2><p>Arcade original inspirado nos clássicos de nave, com formações, mergulhos, captura e resgate, nave dupla e ondas bônus. Partidas de três minutos ou até acabarem as vidas.</p><p>No DevFest 2026, procure o <strong>estande OWASP São José dos Campos</strong> para jogar presencialmente e conhecer a comunidade de segurança.</p><a href="https://www.owasp.community/chapters/sjc" target="_blank" rel="noopener noreferrer">Conheça o capítulo OWASP SJC ↗</a></article><article><h2>Como jogar</h2><p><kbd>←</kbd> <kbd>→</kbd> movem · <kbd>Espaço</kbd> ou <kbd>Z</kbd> atiram · <kbd>Enter</kbd> inicia/salva. No controle padrão: direcional/analógico e botão A para tiro e letras. Botões na tela permitem jogar por toque.</p><p>Se sair da aba durante a missão, a partida termina com os pontos já conquistados. Seus apelidos e pontos ficam somente neste navegador. Não há login, coleta de e-mail ou envio de pontuações.</p></article></section>
+</main>
+<footer><span>DevFest / GDG SJC · Estande OWASP São José dos Campos</span><a href="../../#catalogo">Todos os jogos</a><a href="https://github.com/BrotherOfJhonny/powerarcades-games" target="_blank" rel="noopener noreferrer">Código-fonte</a></footer>
+</body></html>
